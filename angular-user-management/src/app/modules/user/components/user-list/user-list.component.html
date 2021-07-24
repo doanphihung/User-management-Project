@@ -1,0 +1,70 @@
+<div class="card mt-2">
+  <div class="card-header text-center">
+    <h2>User list</h2>
+  </div>
+  <div class="card-body">
+    <div><p class="alert-success" *ngIf="alert">{{alert}}</p></div>
+    <div class="row mb-3">
+      <!--      <div class="row">-->
+      <!--        <div class="col-4"></div>-->
+      <!--        <div class="col-4 alert-success text-center"><p><b>{{alert}}</b></p></div>-->
+      <!--      </div>-->
+
+      <div class="row">
+        <div class="col-4">
+          <button mat-raised-button color="primary" class="mb-2" routerLink="create">Add user</button>
+        </div>
+        <div class="col-8"></div>
+      </div>
+    </div>
+
+    <div class=""><small><b><i>Total: {{countUser}} Users</i></b></small></div>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Position Column -->
+        <ng-container matColumnDef="No">
+          <th mat-header-cell *matHeaderCellDef> No.</th>
+          <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Image">
+          <th mat-header-cell *matHeaderCellDef> Image</th>
+          <td mat-cell *matCellDef="let element"><img src="{{element.image }}" alt=""></td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Email">
+          <th mat-header-cell *matHeaderCellDef> Email</th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Phone">
+          <th mat-header-cell *matHeaderCellDef> Phone</th>
+          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef> Action</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <div class="example-button-container">
+              <button (click)="delete(element.id)" style="color: red; border: none; background: none" >
+                <i class="far fa-trash-alt fa-2x"></i>
+              </button>
+              <!--              <button mat-raised-button (click)="openDialog(i)">Detail</button>-->
+              <button [routerLink]="[element.id + '/update']" style="color: blue; background: none; border: none"><i class="fas fa-user-cog fa-2x"></i></button>
+
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

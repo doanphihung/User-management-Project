@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+  text-align: center !important;
+}
+
+img {
+  width: 100px;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: #efe7e7;
+}
+
+th {
+  text-align: center !important;
+}
